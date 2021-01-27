@@ -34,58 +34,71 @@ const printBoard = () => {
 
 const horizontalWin = () => {
   // Your code here to check for horizontal wins
-  if ((board[0][0] == board[0][1]) && (board[0][0] == board[0][2]) && (!board[0][0] == ' ')) {
-    return true;
-  }
-  if ((board[1][0] == board[1][1]) && (board[1][0] == board[1][2]) && (!board[1][0] == ' ')) {
-    return true;
-  }
-  if ((board[2][0] == board[2][1]) && (board[2][0] == board[2][2]) && (!board[2][0] == ' ')) {
-    return true;
-  }
-  else return false;
+    if (  
+      (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') ||
+      (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') ||
+      (board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X') ||
+      (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') ||
+      (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') ||
+      (board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O')
+    )
+  return true;
+  // ((board[0][0] == board[0][1]) && (board[0][0] == board[0][2]) && (!board[0][0] == ' '))
+  // ((board[1][0] == board[1][1]) && (board[1][0] == board[1][2]) && (!board[1][0] == ' '))
+  // ((board[2][0] == board[2][1]) && (board[2][0] == board[2][2]) && (!board[2][0] == ' '))
 }
 
 const verticalWin = () => {
   // Your code here to check for vertical wins
-  if ((board[0][0] == board[1][0]) && (board[0][0] == board[2][0]) && (!board[0][0] == ' ')) {
-    return true;
-  }
-  if ((board[0][1] == board[1][1]) && (board[0][1] == board[2][1]) && (!board[0][1] == ' ')) {
-    return true;
-  }
-  if ((board[0][2] == board[1][2]) && (board[0][2] == board[2][2]) && (!board[0][2] == ' ')) {
-    return true;
-  }
-  else return false;
+  if ( 
+    (board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X') ||
+    (board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X') ||
+    (board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X') ||
+    (board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O') ||
+    (board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O') ||
+    (board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O')
+  )
+  return true;
+  // ((board[0][0] == board[1][0]) && (board[0][0] == board[2][0]) && (!board[0][0] == ' '))
+  // ((board[0][1] == board[1][1]) && (board[0][1] == board[2][1]) && (!board[0][1] == ' '))
+  // ((board[0][2] == board[1][2]) && (board[0][2] == board[2][2]) && (!board[0][2] == ' '))
 }
 
 const diagonalWin = () => {
   // Your code here to check for diagonal wins
-  if ((board[0][0] == board[1][1]) && (board[0][0] == board[2][2]) && (!board[0][0] == ' ')) {
-    return true;
-  }
-  if ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]) && (!board[0][2] == ' ')) {
-    return true;
-  } 
-  else return false;
+  if ( 
+    (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') ||
+    (board[2][0] == 'O' && board[1][1] == 'O' && board[0][2] == 'O') ||
+    (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') ||
+    (board[2][0] == 'X' && board[1][1] == 'X' && board[0][2] == 'X')
+  )
+  return true;
+  // ((board[0][0] == board[1][1]) && (board[0][0] == board[2][2]) && (!board[0][0] == ' '))
+  // ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]) && (!board[0][2] == ' '))
 }
 
 const checkForWin = () => {
   if ((horizontalWin() == true) || (verticalWin() == true) || (diagonalWin() == true)) {
-    if () {
-      return //player 1 wins
-    }
-    if () {
-      return //player 2 wins
-    }
-   }
-  else //continue playing
+    return true;
+  }
 }
 
 const ticTacToe = (row, column) => {
   // Your code here to place a marker on the board
   // then check for a win
+  if (board[row][column] == ' ') {
+    board[row][column] = playerTurn;
+    if (checkForWin() == true) {
+      console.log('Congrats! Player ' + playerTurn + ' wins!')
+    }
+    if (playerTurn == 'X') {
+      playerTurn = 'O'
+    } else {
+      playerTurn = 'X'
+    }
+  } else {
+    console.log("This space is taken - try again!")
+  }
 }
 
 const getPrompt = () => {
